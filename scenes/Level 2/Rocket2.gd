@@ -1,8 +1,8 @@
 extends Area2D
 
-export var sceneName: String = "LoseScreen"
+export var sceneName: String = "Level 2/WinScreen2"
 
 
-func _on_Fall_body_entered(body):
+func _on_Rocket_body_entered(body):
 	if body.get_name() == "Player":
 		get_tree().change_scene(str("res://scenes/" + sceneName + ".tscn"))

@@ -28,13 +28,13 @@ cell_size = Vector2( 128, 128 )
 format = 1
 tile_data = PoolIntArray( 65536, 0, 65542, 65537, 0, 65543, 65538, 0, 65544, 65540, 0, 65542, 65541, 0, 65543, 65542, 0, 65544, 65544, 0, 65542, 65545, 0, 65543, 65546, 0, 65544 )
 
-[node name="Sprite" type="Sprite" parent="."]
+[node name="Rocket" type="Area2D" parent="."]
+script = ExtResource( 4 )
+
+[node name="Sprite" type="Sprite" parent="Rocket"]
 position = Vector2( 1255, -112 )
 z_index = -1
 texture = ExtResource( 3 )
-
-[node name="Rocket" type="Area2D" parent="."]
-script = ExtResource( 4 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Rocket"]
 position = Vector2( 1255.5, -110 )

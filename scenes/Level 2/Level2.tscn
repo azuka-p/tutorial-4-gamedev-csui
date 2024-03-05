@@ -1,0 +1,53 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scenes/Level 2/Snow.tres" type="TileSet" id=2]
+[ext_resource path="res://assets/Familiar Looking Rocket.png" type="Texture" id=3]
+[ext_resource path="res://scenes/Level 2/Rocket2.gd" type="Script" id=4]
+[ext_resource path="res://scenes/Level 2/Fall2.gd" type="Script" id=5]
+[ext_resource path="res://scenes/Level 2/Spawner2.gd" type="Script" id=6]
+[ext_resource path="res://scenes/Level 2/PinkWorm.tscn" type="PackedScene" id=7]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 96.5, 237 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 2137.75, 49 )
+
+[node name="Level2" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource( 1 )]
+position = Vector2( 0, 85 )
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = ExtResource( 2 )
+cell_size = Vector2( 128, 128 )
+format = 1
+tile_data = PoolIntArray( -327669, 0, 65541, -327668, 0, 65543, -327667, 0, 65540, -262134, 0, 65541, -262133, 0, 8, -262132, 0, 1, -262131, 0, 7, -262130, 0, 65540, -196599, 0, 65541, -196598, 0, 8, -196597, -1610612736, 65540, -196595, -1073741824, 65541, -196594, 0, 7, -196593, 0, 65540, -65539, 0, 65541, -65538, 0, 65543, -65537, 0, 65543, -131072, 0, 65543, -131071, 0, 6, -3, 0, 1, -2, 0, 1, -65529, 0, 65541, -65528, 0, 65543, -65527, 0, 65543, -65526, 0, 6, -65524, 0, 65536, -65522, 0, 5, -65521, 0, 65543, -65520, 0, 65543, -65519, 0, 65540, 65533, 0, 1, 65534, 0, 1, 6, 0, 65541, 7, 0, 8, 8, 0, 1, 9, 0, 1, 15, 0, 1, 16, 0, 1, 17, 0, 7, 18, 0, 65540, 131069, 0, 1, 131070, 0, 1, 131071, 0, 65543, 65536, 0, 65543, 65537, 0, 65543, 65539, 0, 65537, 65540, 0, 65539, 65542, 0, 1, 65543, 0, 1, 65544, 0, 1, 65545, 0, 1, 65546, 0, 1, 65547, 0, 1, 65548, 0, 1, 65549, 0, 1, 65550, 0, 1, 65551, 0, 1, 65552, 0, 1, 65553, 0, 1, 65554, 0, 1, 65556, 0, 65537, 65557, 0, 65539, 65559, 0, 3, 65560, 0, 65543, 65561, 0, 65543, 65562, 0, 4, 196605, 0, 1, 196606, 0, 1, 196607, 0, 1, 131072, 0, 1, 131073, 0, 1, 131078, 0, 1, 131079, 0, 1, 131080, 0, 1, 131081, 0, 1, 131082, 0, 1, 131083, 0, 1, 131084, 0, 1, 131085, 0, 1, 131086, 0, 1, 131087, 0, 1, 131088, 0, 1, 131089, 0, 1, 131090, 0, 1 )
+
+[node name="Rocket2" type="Area2D" parent="."]
+script = ExtResource( 4 )
+
+[node name="Sprite" type="Sprite" parent="Rocket2"]
+position = Vector2( 3193.5, -113.5 )
+z_index = -1
+texture = ExtResource( 3 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Rocket2"]
+position = Vector2( 3194, -111.5 )
+shape = SubResource( 1 )
+
+[node name="Fall2" type="Area2D" parent="."]
+script = ExtResource( 5 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Fall2"]
+position = Vector2( 2163, 726 )
+shape = SubResource( 2 )
+
+[node name="Spawner2" type="Node2D" parent="."]
+position = Vector2( 1601, -772 )
+script = ExtResource( 6 )
+obstacle = ExtResource( 7 )
+
+[connection signal="body_entered" from="Rocket2" to="Rocket2" method="_on_Rocket_body_entered"]
+[connection signal="body_entered" from="Fall2" to="Fall2" method="_on_Fall_body_entered"]

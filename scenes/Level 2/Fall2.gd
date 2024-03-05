@@ -1,6 +1,6 @@
 extends Area2D
 
-export var sceneName: String = "LoseScreen"
+export var sceneName: String = "Level 2/LoseScreen2"
 
 
 func _on_Fall_body_entered(body):
